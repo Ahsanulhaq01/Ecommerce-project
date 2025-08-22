@@ -1,9 +1,9 @@
 import { use, useEffect, useState } from 'react';
 import axios from 'axios'
 import Header from "../components/Header";
-// import { products } from "../../../ecommerce-project-main/data/products";
+import { formatMoney } from '../utils/money';
 import "./homepage.css";  
-function HomePage({carts}) {
+function HomePage({cart}) {
   const [products , setProducts] = useState([]);
 
   useEffect(()=>{
@@ -17,8 +17,8 @@ function HomePage({carts}) {
     <>
       <link rel="icon" type="image/svg+xml" href="./images/home-favicon.png" />
       <title>Ecommerce Project</title>
-    console.log(carts)
-      <Header carts ={carts} />
+   
+      <Header cart ={cart} />
 
       <div className="home-page">
         <div className="products-grid">
@@ -46,7 +46,7 @@ function HomePage({carts}) {
                 </div>
 
                 <div className="product-price">
-                  ${(product.priceCents / 100).toFixed(2)}
+                 {formatMoney(product.priceCents)}
                 </div>
 
                 <div className="product-quantity-container">

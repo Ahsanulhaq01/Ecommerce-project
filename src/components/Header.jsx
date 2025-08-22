@@ -1,8 +1,8 @@
 import {NavLink } from 'react-router';
 import './Header.css'
-function Header({carts}){
+function Header({cart}){
   let cartQuantity = 0;
-  carts.forEach((cartItems)=>{
+  cart.forEach((cartItems)=>{
     cartQuantity += cartItems.quantity
   })
 

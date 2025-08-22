@@ -3,24 +3,24 @@ import './checkoutHeader.css'
 function CheckoutHeader(){
     return(
         <>
-        <div class="checkout-header">
-        <div class="header-content">
-          <div class="checkout-header-left-section">
+        <div className="checkout-header">
+        <div className="header-content">
+          <div className="checkout-header-left-section">
             <Link to="/">
-              <img class="logo" src="./src/assets/images/icons/logo.png" />
-              <img class="mobile-logo" src="./src/assets/images/icons/mobile-logo.png" />
+              <img className="logo" src="./src/assets/images/icons/logo.png" />
+              <img className="mobile-logo" src="./src/assets/images/icons/mobile-logo.png" />
             </Link>
           </div>
 
-          <div class="checkout-header-middle-section">
+          <div className="checkout-header-middle-section">
             Checkout (
-            <Link class="return-to-home-link" to="/">
+            <Link className="return-to-home-link" to="/">
               3 items
             </Link>
             )
           </div>
 
-          <div class="checkout-header-right-section">
+          <div className="checkout-header-right-section">
             <img src="./src/assets/images/icons/checkout-lock-icon.png" />
           </div>
         </div>
