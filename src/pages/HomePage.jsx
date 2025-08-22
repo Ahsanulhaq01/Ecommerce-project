@@ -3,18 +3,13 @@ import axios from 'axios'
 import Header from "../components/Header";
 // import { products } from "../../../ecommerce-project-main/data/products";
 import "./homepage.css";  
-function HomePage() {
+function HomePage({carts}) {
   const [products , setProducts] = useState([]);
-  const [carts ,setCarts] = useState([]);
-
 
   useEffect(()=>{
     axios.get('/api/products/').then((response)=>{
     setProducts(response.data);
 
-    })
-    axios.get('/api/cart-items/').then((response)=>{
-      setCarts(response.data);
     })
   }, [])
   
@@ -23,7 +18,7 @@ function HomePage() {
       <link rel="icon" type="image/svg+xml" href="./images/home-favicon.png" />
       <title>Ecommerce Project</title>
     console.log(carts)
-      <Header cart={carts} />
+      <Header carts ={carts} />
 
       <div className="home-page">
         <div className="products-grid">
