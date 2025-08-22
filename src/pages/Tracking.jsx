@@ -19,7 +19,6 @@ function Tracking() {
           </div>
 
           <div className="product-info">Quantity: 1</div>
-
           <img
             className="product-image"
             src="images/products/athletic-cotton-socks-6-pairs.jpg"
