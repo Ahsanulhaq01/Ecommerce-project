@@ -1,10 +1,10 @@
 import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, NavLink, UNSAFE_ServerMode } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import "./orders.css";
 import dayjs from "dayjs";
-import { formatMoney } from "../utils/money";
+import { formatMoney } from "../../utils/money";
 function Order({ cart }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
@@ -97,6 +97,7 @@ function Order({ cart }) {
             );
           })}
         </div>
+        
       </div>
     </>
   );

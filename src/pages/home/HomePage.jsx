@@ -1,7 +1,7 @@
 import { use, useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import { formatMoney } from "../utils/money";
+import Header from "../../components/Header";
+import { formatMoney } from "../../utils/money";
 import "./homepage.css";
 function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
