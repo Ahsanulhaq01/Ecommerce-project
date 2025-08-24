@@ -6,6 +6,7 @@ import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs'
 import { PaymentSummary } from "./PaymentSummary";
+import CartItemDetails from "./CartItemDetails";
 
 function Checkout({cart}) {
   const [deliveryOptions , setDeliveryOptions] = useState([]);
@@ -54,7 +55,7 @@ const response = await axios.get('/api/delivery-options?expand=estimatedDelivery
                   src={cartItem.product.image}
                 />
 
-                <div className="cart-item-details">
+                {/* <div className="cart-item-details">
                   <div className="product-name">{cartItem.product.name}</div>
                   <div className="product-price">{formatMoney(cartItem.product.priceCents)}</div>
                   <div className="product-quantity">
@@ -68,8 +69,8 @@ const response = await axios.get('/api/delivery-options?expand=estimatedDelivery
                       Delete
                     </span>
                   </div>
-                </div>
-
+                </div> */}
+                <CartItemDetails cartItem = {cartItem}/>
                 <div className="delivery-options">
                   <div className="delivery-options-title">
                     Choose a delivery option:
