@@ -1,11 +1,11 @@
 import Header from "../components/Header";
 import "./tracking.css";
-function Tracking() {
+function Tracking({cart}) {
   return (
     <>
     <link rel="icon" type="image/svg+xml" href="./images/tracking-favicon.png" />
       <title>Tracking</title>
-      <Header/>
+      <Header cart={cart}/>
       <div className="tracking-page">
         <div className="order-tracking">
           <a className="back-to-orders-link link-primary" href="orders">
