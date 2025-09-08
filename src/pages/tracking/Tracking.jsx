@@ -27,8 +27,7 @@ function Tracking({ cart }) {
     prod.estimatedDeliveryTimeMs - order.orderTimeMs
   );
   const timePassedMS = dayjs().valueOf() - order.orderTimeMs;
-
-  let deliveryPercent = (timePassedMS / totalDeliveryTimeMS) * 100;
+  let deliveryPercent = Math.floor((timePassedMS / totalDeliveryTimeMS) * Math.floor(Math.random()*10 + 1)/10);
   if (deliveryPercent > 100) {
     deliveryPercent = 100;
   }
