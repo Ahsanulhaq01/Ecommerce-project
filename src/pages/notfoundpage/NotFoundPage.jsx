@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import './not-found-page.css'
 
 function NotFoundPage({cart}){

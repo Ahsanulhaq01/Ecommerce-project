@@ -4,9 +4,9 @@ import { Routes, Route } from "react-router";
 import HomePage from "./pages/home/HomePage";
 import Checkout from "./pages/checkout/Checkout";
 import Order from "./pages/orders/Order";
-import Tracking from "./pages/Tracking";
+import Tracking from "./pages/tracking/Tracking";
 import "./App.css";
-import NotFoundPage from "./pages/NotFoundPage";
+import NotFoundPage from "./pages/notfoundpage/NotFoundPage";
 function App() {
   const [cart, setCart] = useState([]);
 

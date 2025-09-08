@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import "./tracking.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -23,7 +23,6 @@ function Tracking({ cart }) {
   }
 
   const prod = order.products.find((prod) => prod.productId === productId);
-
   const totalDeliveryTimeMS = Number(
     prod.estimatedDeliveryTimeMs - order.orderTimeMs
   );
@@ -49,7 +48,7 @@ function Tracking({ cart }) {
       <Header cart={cart} />
       <div className="tracking-page">
         <div className="order-tracking">
-          <a className="back-to-orders-link link-primary" href="orders">
+          <a className="back-to-orders-link link-primary" href="/orders">
             View all orders
           </a>
 
