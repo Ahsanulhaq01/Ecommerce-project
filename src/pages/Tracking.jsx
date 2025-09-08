@@ -1,14 +1,18 @@
-import Header from "../components/Header";
+import { useParams } from "react-router";
+import Header from "../components/Header.jsx";
 import "./tracking.css";
 function Tracking({cart}) {
+  const params = useParams();
+  const {orderId , productId} = params;
+  
   return (
     <>
-    <link rel="icon" type="image/svg+xml" href="./images/tracking-favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="../../public/images/tracking-favicon.png" />
       <title>Tracking</title>
       <Header cart={cart}/>
       <div className="tracking-page">
         <div className="order-tracking">
-          <a className="back-to-orders-link link-primary" href="orders">
+          <a className="back-to-orders-link link-primary" href="/orders">
             View all orders
           </a>
 
@@ -21,7 +25,7 @@ function Tracking({cart}) {
           <div className="product-info">Quantity: 1</div>
           <img
             className="product-image"
-            src="images/products/athletic-cotton-socks-6-pairs.jpg"
+            src="../../public/images/products/athletic-cotton-socks-6-pairs.jpg"
           />
 
           <div className="progress-labels-container">
