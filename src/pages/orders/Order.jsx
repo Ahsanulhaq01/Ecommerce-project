@@ -1,10 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
-import { Link, NavLink, UNSAFE_ServerMode } from "react-router-dom";
+import OrdersGrid from "./OrdersGrid";
 import Header from "../../components/Header";
 import "./orders.css";
-import dayjs from "dayjs";
-import { formatMoney } from "../../utils/money";
 function Order({ cart }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
@@ -28,7 +25,7 @@ function Order({ cart }) {
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
 
-        <div className="orders-grid">
+        {/* <div className="orders-grid">
           {orders.map((order) => {
             return (
               <div key={order.id} className="order-container">
@@ -96,8 +93,8 @@ function Order({ cart }) {
               </div>
             );
           })}
-        </div>
-        
+        </div> */}
+        <OrdersGrid orders={orders} />
       </div>
     </>
   );
