@@ -68,7 +68,7 @@ function Checkout({ cart , loadCart }) {
                         className="product-image"
                         src={cartItem.product.image}
                       />
-                      <CartItemDetails cartItem={cartItem} />
+                      <CartItemDetails cartItem={cartItem} loadCart={loadCart} />
                       <DeliveryOption deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart
                       ={loadCart}/>
                     </div>
