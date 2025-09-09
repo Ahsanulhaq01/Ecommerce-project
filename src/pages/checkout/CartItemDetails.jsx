@@ -1,10 +1,41 @@
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
-function CartItemDetails({cartItem , loadCart}) {
-async function deleteCartItem(){
-  await axios.delete(`/api/cart-items/${cartItem.productId}`)
-  await loadCart();
-}
+import "./cart-item-details.css";
+import { useState } from "react";
+function CartItemDetails({ cartItem, loadCart }) {
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+  async function deleteCartItem() {
+    await axios.delete(`/api/cart-items/${cartItem.productId}`);
+    await loadCart();
+  }
+
+  async function updatedCartItem() {
+    await axios.put(`/api/cart-items/${cartItem.productId}`, {
+      quantity: Number(quantity),
+    });
+    await loadCart();
+    setIsUpdated(false);
+    console.log("hello pakistan");
+  }
+  function toggleIsUpdated() {
+    setIsUpdated(true);
+    if (isUpdated) {
+      updatedCartItem();
+    }
+  }
+  function updatedInputValue(e) {
+    setQuantity(e.target.value);
+  }
+
+  function handlekeyDown(event) {
+    if (event.key == "Enter") {
+      updatedCartItem();
+    } else if (event.key == "Escape") {
+      setQuantity(cartItem.quantity);
+      setIsUpdated(false);
+    }
+  }
   return (
     <>
       <div className="cart-item-details">
@@ -15,7 +46,29 @@ async function deleteCartItem(){
         <div className="product-quantity">
           <span>
             Quantity:{" "}
-            <span className="quantity-label">{cartItem.quantity}</span>
+            {isUpdated ? (
+              <input
+                type="text"
+                className="update-product-quantity"
+                value={quantity}
+                onChange={updatedInputValue}
+                onKeyDown={handlekeyDown}
+              />
+            ) : (
+              <span className="quantity-label">{cartItem.quantity}</span>
+            )}
+          </span>
+          <span
+            className="update-quantity-link link-primary"
+            onClick={toggleIsUpdated}
+          >
+            Update
+          </span>
+          <span
+            className="delete-quantity-link link-primary"
+            onClick={deleteCartItem}
+          >
+            Delete
           </span>
           <span className="update-quantity-link link-primary">Update</span>
           <span className="delete-quantity-link link-primary" onClick={deleteCartItem}>Delete</span>
