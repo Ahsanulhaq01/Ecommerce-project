@@ -9,23 +9,25 @@ import "./App.css";
 import NotFoundPage from "./pages/notfoundpage/NotFoundPage";
 function App() {
   const [cart, setCart] = useState([]);
-
-  useEffect(() => { 
-    const getcartdata = async () => {
-      const response = await axios.get("/api/cart-items?expand=product");
-      setCart(response.data);
-    };
-
-    getcartdata();
+  const loadCart = async () => {
+    const response = await axios.get("/api/cart-items?expand=product");
+    setCart(response.data);
+  };
+  useEffect(() => {
+    loadCart();
+    console.log("hello pakistan")
   }, []);
 
   return (
     <>
       <Routes>
-        <Route index element={<HomePage cart={cart} />} />
+        <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
         <Route path="checkout" element={<Checkout cart={cart} />} />
         <Route path="orders" element={<Order cart={cart} />} />
-        <Route path="tracking/:orderId/:productId" element={<Tracking cart= {cart} />} />
+        <Route
+          path="tracking/:orderId/:productId"
+          element={<Tracking cart={cart} />}
+        />
         <Route path="*" element={<NotFoundPage cart={cart} />} />
       </Routes>
     </>
