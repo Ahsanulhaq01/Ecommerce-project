@@ -3,18 +3,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router";
 import axios from "axios";
 function OrdersDetailsGrid({ order}) {
-
-  // async function addCartItem(){
-  //  const productid =  order.products.product.id
-  //  console.log(productid)
-  //   await axios.post(`/api/cart-items/`,{
-  //     productId : productid,
-  //     quantity : 1,
-  //   })
-  //   loadCart();
-  // }
-  window.axios = axios;
-  
+ 
   return (
     <>
       <div className="order-details-grid">
