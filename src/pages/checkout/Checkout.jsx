@@ -13,10 +13,17 @@ function Checkout({ cart , loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
-  const loadPaymentSummary = async () => {
+  // const loadPaymentSummary = async () => {
+  //     const response = await axios.get("/api/payment-summary");
+  //     setPaymentSummary(response.data);
+  //   };
+    useEffect(()=>{
+     const loadPaymentSummary = async () => {
       const response = await axios.get("/api/payment-summary");
       setPaymentSummary(response.data);
     };
+    loadPaymentSummary();
+  },[cart])
   useEffect(() => {
     const getdeliveryoptiondata = async () => {
       const response = await axios.get(
@@ -24,14 +31,10 @@ function Checkout({ cart , loadCart }) {
       );
       setDeliveryOptions(response.data);
     };
-
-    // const getpaymentsummarydata = async () => {
-    //   const response = await axios.get("/api/payment-summary");
-    //   setPaymentSummary(response.data);
-    // };
     getdeliveryoptiondata();
-    loadPaymentSummary();
+    
   }, []);
+
 
   return (
     <>
@@ -67,7 +70,7 @@ function Checkout({ cart , loadCart }) {
                       />
                       <CartItemDetails cartItem={cartItem} />
                       <DeliveryOption deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart
-                      ={loadCart} loadPaymentSummary={loadPaymentSummary}/>
+                      ={loadCart}/>
                     </div>
                   </div>
                 );

@@ -15,7 +15,6 @@ function App() {
   };
   useEffect(() => {
     loadCart();
-    console.log("hello pakistan")
   }, []);
 
   return (
