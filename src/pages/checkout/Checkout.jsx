@@ -77,7 +77,7 @@ function Checkout({ cart , loadCart }) {
               })}
           </div>
 
-          <PaymentSummary paymentSummary={paymentSummary} />
+          <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart} />
         </div>
       </div>
     </>
