@@ -6,11 +6,17 @@ import { formatMoney } from "../../utils/money";
 import { PaymentSummary } from "./PaymentSummary";
 import CartItemDetails from "./CartItemDetails";
 import CheckoutHeader from "./CheckoutHeader";
+import DeliveryOption from "./DeliveryOption";
 import "./checkout.css";
 
-function Checkout({ cart }) {
+function Checkout({ cart , loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
+
+  const loadPaymentSummary = async () => {
+      const response = await axios.get("/api/payment-summary");
+      setPaymentSummary(response.data);
+    };
   useEffect(() => {
     const getdeliveryoptiondata = async () => {
       const response = await axios.get(
@@ -19,12 +25,12 @@ function Checkout({ cart }) {
       setDeliveryOptions(response.data);
     };
 
-    const getpaymentsummarydata = async () => {
-      const response = await axios.get("/api/payment-summary");
-      setPaymentSummary(response.data);
-    };
+    // const getpaymentsummarydata = async () => {
+    //   const response = await axios.get("/api/payment-summary");
+    //   setPaymentSummary(response.data);
+    // };
     getdeliveryoptiondata();
-    getpaymentsummarydata();
+    loadPaymentSummary();
   }, []);
 
   return (
@@ -60,45 +66,8 @@ function Checkout({ cart }) {
                         src={cartItem.product.image}
                       />
                       <CartItemDetails cartItem={cartItem} />
-                      <div className="delivery-options">
-                        <div className="delivery-options-title">
-                          Choose a delivery option:
-                        </div>
-                        {deliveryOptions.map((deliveryOption) => {
-                          let priceString = "Free Shipping";
-                          if (deliveryOption.priceCents > 0) {
-                            priceString = `${formatMoney(
-                              deliveryOption.priceCents
-                            )}-Shipping`;
-                          }
-                          return (
-                            <div
-                              key={deliveryOption.id}
-                              className="delivery-option"
-                            >
-                              <input
-                                type="radio"
-                                className="delivery-option-input"
-                                name={`delivery-option-${cartItem.productId}`}
-                                checked={
-                                  deliveryOption.id ===
-                                  cartItem.deliveryOptionId
-                                }
-                              />
-                              <div>
-                                <div className="delivery-option-date">
-                                  {dayjs(
-                                    deliveryOption.estimatedDeliveryTimeMs
-                                  ).format("dddd, MMMM D")}
-                                </div>
-                                <div className="delivery-option-price">
-                                  {priceString}
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <DeliveryOption deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart
+                      ={loadCart} loadPaymentSummary={loadPaymentSummary}/>
                     </div>
                   </div>
                 );
