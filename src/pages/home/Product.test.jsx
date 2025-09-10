@@ -1,4 +1,4 @@
-import { prettyDOM, render, screen } from "@testing-library/react";
+import {render, screen } from "@testing-library/react";
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import userEvent from "@testing-library/user-event";
 import Product from "./Product";
