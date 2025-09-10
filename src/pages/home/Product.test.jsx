@@ -3,6 +3,7 @@ import { it, expect, describe, vi, beforeEach } from "vitest";
 import userEvent from "@testing-library/user-event";
 import Product from "./Product";
 import axios from "axios";
+import { readNextDescriptor } from "@testing-library/user-event/dist/cjs/utils/index.js";
 
 vi.mock("axios");
 describe("Product Component", () => {
@@ -58,4 +59,11 @@ describe("Product Component", () => {
 
     expect(loadCart).toHaveBeenCalled();
   });
+
+  it('Select the quantity',()=>{
+    render(<Product product={product}loadCart={loadCart}/>)
+    const quantitySelector = screen.getByTestId('select-product-quantity');
+
+    expect(quantitySelector).toHaveValue('1')
+  })
 });
