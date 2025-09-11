@@ -74,9 +74,19 @@ describe("Homepage Component", () => {
     );
     const productContainers = await screen.findAllByTestId("product-container");
     const user = userEvent.setup();
+    
     const addToCartButton1 = within(productContainers[0]).getByTestId(
       "add-to-cart-button"
     );
+    const quantitySelector1 = within(productContainers[0]).getByTestId('select-product-quantity');
+    await user.selectOptions(quantitySelector1,'3');
+    expect(quantitySelector1).toHaveValue('3');
+
+    const quantitySelector2 = within(productContainers[1]).getByTestId('select-product-quantity');
+    await user.selectOptions(quantitySelector2 , '2');
+    expect(quantitySelector2).toHaveValue('2')
+
+
     await user.click(addToCartButton1);
 
     const addToCartButton2 = within(productContainers[1]).getByTestId(
@@ -86,12 +96,12 @@ describe("Homepage Component", () => {
 
     expect(axios.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      quantity: 1,
+      quantity: 3,
     });
 
     expect(axios.post).toHaveBeenNthCalledWith(2, "/api/cart-items", {
       productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-      quantity: 1,
+      quantity: 2,
     });
     expect(loadCart).toHaveBeenCalledTimes(2);
   });
