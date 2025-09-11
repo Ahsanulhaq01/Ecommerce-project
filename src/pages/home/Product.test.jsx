@@ -1,14 +1,14 @@
-import {render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import userEvent from "@testing-library/user-event";
 import Product from "./Product";
 import axios from "axios";
-import { readNextDescriptor } from "@testing-library/user-event/dist/cjs/utils/index.js";
 
 vi.mock("axios");
 describe("Product Component", () => {
   let product;
   let loadCart;
+  let user;
   beforeEach(() => {
     product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -23,6 +23,7 @@ describe("Product Component", () => {
     };
 
     loadCart = vi.fn();
+    user = userEvent.setup();
   });
   it("display the product details correctly", () => {
     render(<Product product={product} loadCart={loadCart} />);
@@ -47,7 +48,6 @@ describe("Product Component", () => {
   it("add product to the cart", async () => {
     render(<Product product={product} loadCart={loadCart} />);
 
-    const user = userEvent.setup();
     const addToCartButton = screen.getByTestId("add-to-cart-button");
 
     await user.click(addToCartButton);
@@ -60,10 +60,20 @@ describe("Product Component", () => {
     expect(loadCart).toHaveBeenCalled();
   });
 
-  it('Select the quantity',()=>{
-    render(<Product product={product}loadCart={loadCart}/>)
-    const quantitySelector = screen.getByTestId('select-product-quantity');
+  it("Select the quantity", async () => {
+    render(<Product product={product} loadCart={loadCart} />);
+    const quantitySelector = screen.getByTestId("select-product-quantity");
+    await user.selectOptions(quantitySelector, "3");
+    const addToCartButton = screen.getByTestId("add-to-cart-button");
 
-    expect(quantitySelector).toHaveValue('1')
-  })
+    await user.click(addToCartButton);
+
+    expect(quantitySelector).toHaveValue("3");
+    expect(axios.post).toHaveBeenCalledWith("/api/cart-items", {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 3,
+    });
+
+    expect(loadCart).toBeCalled();
+  });
 });
