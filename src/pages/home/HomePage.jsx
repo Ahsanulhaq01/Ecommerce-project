@@ -1,11 +1,12 @@
-import { useState ,useContext} from "react";
+import { useContext} from "react";
 import Header from "../../components/Header";
-import { HomeContext ,productContext } from "./HomeContext";
-import { formatMoney } from "../../utils/money";
+import {productContext } from "./HomeContext";
+import { CartsContext } from "../checkout/CartContext";
 import "./homepage.css";
 import ProductGrid from "./ProductGrid";
-function HomePage({ cart, loadCart }) {
+function HomePage() {
   const {products} = useContext(productContext)
+   const {cart , loadCart} = useContext(CartsContext)
 
   
   return (
@@ -13,7 +14,7 @@ function HomePage({ cart, loadCart }) {
       <link rel="icon" type="image/svg+xml" href="./images/home-favicon.png" />
       <title>Ecommerce Project</title>
 
-      <Header cart={cart} />
+      <Header />
 
       <div className="home-page">
         <ProductGrid  loadCart={loadCart} />

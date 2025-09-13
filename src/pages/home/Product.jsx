@@ -3,8 +3,8 @@ import axios from "axios";
 import { formatMoney } from "../../utils/money";
 function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
-  const [showAddedMsg , setShowAddedMsg] = useState(false)
-async function addToCart() {
+  const [showAddedMsg, setShowAddedMsg] = useState(false);
+  async function addToCart() {
     await axios.post("/api/cart-items", {
       productId: product.id,
       quantity,
@@ -12,21 +12,22 @@ async function addToCart() {
     await loadCart();
     setShowAddedMsg(true);
     setTimeout(() => {
-        setShowAddedMsg(false)
+      setShowAddedMsg(false);
     }, 2000);
   }
-  function selectQuantity(e){
-              const selectedQuantity = Number(e.target.value);
-              setQuantity(selectedQuantity);
-
+  function selectQuantity(e) {
+    const selectedQuantity = Number(e.target.value);
+    setQuantity(selectedQuantity);
   }
   return (
     <>
-      <div className="product-container"
-      data-testid='product-container'
-      >
+      <div className="product-container" data-testid="product-container">
         <div className="product-image-container">
-          <img className="product-image" data-testid ='product-image' src={product.image} />
+          <img
+            className="product-image"
+            data-testid="product-image"
+            src={product.image}
+          />
         </div>
 
         <div className="product-name limit-text-to-2-lines">{product.name}</div>
@@ -34,7 +35,7 @@ async function addToCart() {
         <div className="product-rating-container">
           <img
             className="product-rating-stars"
-            data-testid ='product-rating-stars-image'
+            data-testid="product-rating-stars-image"
             src={`images/ratings/rating-${product.rating.stars * 10}.png`}
           />
           <div className="product-rating-count link-primary">
@@ -44,11 +45,11 @@ async function addToCart() {
 
         <div className="product-price">{formatMoney(product.priceCents)}</div>
 
-        <div className="product-quantity-container" >
+        <div className="product-quantity-container">
           <select
             value={quantity}
             onChange={selectQuantity}
-            data-testid='select-product-quantity'
+            data-testid="select-product-quantity"
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -65,14 +66,17 @@ async function addToCart() {
 
         <div className="product-spacer"></div>
 
-        <div className="added-to-cart" style={{opacity : showAddedMsg ? 1 : 0}}>
+        <div
+          className="added-to-cart"
+          style={{ opacity: showAddedMsg ? 1 : 0 }}
+        >
           <img src="images/icons/checkmark.png" />
           Added
         </div>
 
         <button
           className="add-to-cart-button button-primary"
-          data-testid ='add-to-cart-button'
+          data-testid="add-to-cart-button"
           onClick={addToCart}
         >
           Add to Cart

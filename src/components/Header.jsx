@@ -1,7 +1,9 @@
 import {NavLink, useNavigate } from 'react-router-dom';
 import './Header.css'
-import { useState } from 'react';
-function Header({cart}){
+import { useContext, useState } from 'react';
+import { CartsContext } from '../pages/checkout/CartContext';
+function Header(){
+  const {cart} = useContext(CartsContext)
   const [searchValue , setSearchValue] = useState('');
   const navigate = useNavigate();
 

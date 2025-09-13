@@ -1,17 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { NavLink } from "react-router-dom";
-import { formatMoney } from "../../utils/money";
 import { PaymentSummary } from "./PaymentSummary";
 import CartItemDetails from "./CartItemDetails";
 import CheckoutHeader from "./CheckoutHeader";
 import DeliveryOption from "./DeliveryOption";
 import "./checkout.css";
+import { CartsContext } from "./CartContext";
 
-function Checkout({ cart , loadCart }) {
+function Checkout() {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
+  const {cart , loadCart} = useContext(CartsContext)
 
   // const loadPaymentSummary = async () => {
   //     const response = await axios.get("/api/payment-summary");

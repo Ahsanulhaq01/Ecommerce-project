@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import OrdersGrid from "./OrdersGrid";
 import Header from "../../components/Header";
 import "./orders.css";
-function Order({ cart }) {
+import { CartsContext } from "../checkout/CartContext";
+function Order() {
   const [orders, setOrders] = useState([]);
+  const {cart} = useContext(CartsContext)
   useEffect(() => {
     const getorderdata = async () => {
       const response = await axios.get("/api/orders?expand=products");
@@ -21,7 +23,7 @@ function Order({ cart }) {
       />
       <title>Orders</title>
 
-      <Header cart={cart} />
+      <Header />
 
       <div className="orders-page">
         <div className="page-title">Your Orders</div>

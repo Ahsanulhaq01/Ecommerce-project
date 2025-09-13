@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useParams } from "react-router";
 import Header from "../../components/Header";
 import "./tracking.css";
-function Tracking({ cart }) {
+import { CartsContext } from "../checkout/CartContext";
+function Tracking() {
   const [order, setOrder] = useState(null);
+  const {cart}  = useContext(CartsContext)
   const params = useParams();
   const { orderId, productId } = params;
   useEffect(() => {
@@ -44,7 +46,7 @@ function Tracking({ cart }) {
         href="./images/tracking-favicon.png"
       />
       <title>Tracking</title>
-      <Header cart={cart} />
+      <Header/>
       <div className="tracking-page">
         <div className="order-tracking">
           <a className="back-to-orders-link link-primary" href="/orders">
