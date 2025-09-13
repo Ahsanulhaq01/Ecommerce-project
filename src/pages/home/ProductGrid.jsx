@@ -1,5 +1,9 @@
 import Product from "./Product";
-function ProductGrid({products,loadCart}){
+import { productContext } from "./HomeContext";
+import { useContext } from "react";
+function ProductGrid({loadCart}){
+
+  const {products} = useContext(productContext)
     return(
         <>
         <div className="products-grid">

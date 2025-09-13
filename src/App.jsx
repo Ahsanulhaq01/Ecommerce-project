@@ -5,6 +5,7 @@ import HomePage from "./pages/home/HomePage";
 import Checkout from "./pages/checkout/Checkout";
 import Order from "./pages/orders/Order";
 import Tracking from "./pages/tracking/Tracking";
+import { HomeContext } from "./pages/home/HomeContext";
 import "./App.css";
 import NotFoundPage from "./pages/notfoundpage/NotFoundPage";
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <>
+    <HomeContext>
       <Routes>
         <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
         <Route path="checkout" element={<Checkout cart={cart} loadCart={loadCart} />} />
@@ -29,6 +31,7 @@ function App() {
         />
         <Route path="*" element={<NotFoundPage cart={cart} />} />
       </Routes>
+      </HomeContext>
     </>
   );
 }

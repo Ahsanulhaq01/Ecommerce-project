@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
-
 function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
   const [showAddedMsg , setShowAddedMsg] = useState(false)
