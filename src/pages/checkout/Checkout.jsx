@@ -11,19 +11,19 @@ import { CartsContext } from "./CartContext";
 function Checkout() {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
-  const {cart , loadCart} = useContext(CartsContext)
+  const { cart, loadCart } = useContext(CartsContext);
 
   // const loadPaymentSummary = async () => {
   //     const response = await axios.get("/api/payment-summary");
   //     setPaymentSummary(response.data);
   //   };
-    useEffect(()=>{
-     const loadPaymentSummary = async () => {
+  useEffect(() => {
+    const loadPaymentSummary = async () => {
       const response = await axios.get("/api/payment-summary");
       setPaymentSummary(response.data);
     };
     loadPaymentSummary();
-  },[cart])
+  }, [cart]);
   useEffect(() => {
     const getdeliveryoptiondata = async () => {
       const response = await axios.get(
@@ -32,9 +32,7 @@ function Checkout() {
       setDeliveryOptions(response.data);
     };
     getdeliveryoptiondata();
-    
   }, []);
-
 
   return (
     <>
@@ -68,9 +66,15 @@ function Checkout() {
                         className="product-image"
                         src={cartItem.product.image}
                       />
-                      <CartItemDetails cartItem={cartItem} loadCart={loadCart} />
-                      <DeliveryOption deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart
-                      ={loadCart}/>
+                      <CartItemDetails
+                        cartItem={cartItem}
+                        loadCart={loadCart}
+                      />
+                      <DeliveryOption
+                        deliveryOptions={deliveryOptions}
+                        cartItem={cartItem}
+                        loadCart={loadCart}
+                      />
                     </div>
                   </div>
                 );

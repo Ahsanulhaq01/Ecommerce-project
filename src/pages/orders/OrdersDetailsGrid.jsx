@@ -1,8 +1,7 @@
 import { Fragment } from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router";
-function OrdersDetailsGrid({ order}) {
- 
+function OrdersDetailsGrid({ order }) {
   return (
     <>
       <div className="order-details-grid">
@@ -27,7 +26,7 @@ function OrdersDetailsGrid({ order}) {
                     className="buy-again-icon"
                     src="./src/assets/images/icons/buy-again.png"
                   />
-                  <span className="buy-again-message" >Add to Cart</span>
+                  <span className="buy-again-message">Add to Cart</span>
                 </button>
               </div>
 

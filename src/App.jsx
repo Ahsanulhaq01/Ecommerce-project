@@ -8,18 +8,13 @@ import NotFoundPage from "./pages/notfoundpage/NotFoundPage";
 function App() {
   return (
     <>
-    
       <Routes>
-        <Route index element={<HomePage/>} />
-        <Route path="checkout" element={<Checkout/>} />
-        <Route path="orders" element={<Order/>} />
-        <Route
-          path="tracking/:orderId/:productId"
-          element={<Tracking/>}
-        />
-        <Route path="*" element={<NotFoundPage/>} />
+        <Route index element={<HomePage />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="orders" element={<Order />} />
+        <Route path="tracking/:orderId/:productId" element={<Tracking />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      
     </>
   );
 }

@@ -6,7 +6,7 @@ import "./orders.css";
 import { CartsContext } from "../checkout/CartContext";
 function Order() {
   const [orders, setOrders] = useState([]);
-  const {cart} = useContext(CartsContext)
+  const { cart } = useContext(CartsContext);
   useEffect(() => {
     const getorderdata = async () => {
       const response = await axios.get("/api/orders?expand=products");

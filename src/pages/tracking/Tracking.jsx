@@ -7,7 +7,7 @@ import "./tracking.css";
 import { CartsContext } from "../checkout/CartContext";
 function Tracking() {
   const [order, setOrder] = useState(null);
-  const {cart}  = useContext(CartsContext)
+  const { cart } = useContext(CartsContext);
   const params = useParams();
   const { orderId, productId } = params;
   useEffect(() => {
@@ -29,7 +29,11 @@ function Tracking() {
     prod.estimatedDeliveryTimeMs - order.orderTimeMs
   );
   const timePassedMS = dayjs().valueOf() - order.orderTimeMs;
-  let deliveryPercent = Math.floor((timePassedMS / totalDeliveryTimeMS) * Math.floor(Math.random()*10 + 1)/10);
+  let deliveryPercent = Math.floor(
+    ((timePassedMS / totalDeliveryTimeMS) *
+      Math.floor(Math.random() * 10 + 1)) /
+      10
+  );
   if (deliveryPercent > 100) {
     deliveryPercent = 100;
   }
@@ -46,7 +50,7 @@ function Tracking() {
         href="./images/tracking-favicon.png"
       />
       <title>Tracking</title>
-      <Header/>
+      <Header />
       <div className="tracking-page">
         <div className="order-tracking">
           <a className="back-to-orders-link link-primary" href="/orders">
