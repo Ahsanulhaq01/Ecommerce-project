@@ -8,7 +8,6 @@ export function HomeContext({ children }) {
     const getProductsData = async () => {
       const response = await axios.get("/api/products");
       setProducts(response.data);
-      console.log(response.data);
     };
     getProductsData();
   }, []);

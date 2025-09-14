@@ -1,5 +1,9 @@
 import { it, describe, expect, vi, beforeEach } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import {
+  render,
+  screen,
+  within,
+} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import HomePage from "./HomePage";
@@ -70,21 +74,18 @@ describe("Homepage Component", () => {
     );
     const productContainers = await screen.findAllByTestId("product-container");
     const user = userEvent.setup();
-
+    
     const addToCartButton1 = within(productContainers[0]).getByTestId(
       "add-to-cart-button"
     );
-    const quantitySelector1 = within(productContainers[0]).getByTestId(
-      "select-product-quantity"
-    );
-    await user.selectOptions(quantitySelector1, "3");
-    expect(quantitySelector1).toHaveValue("3");
+    const quantitySelector1 = within(productContainers[0]).getByTestId('select-product-quantity');
+    await user.selectOptions(quantitySelector1,'3');
+    expect(quantitySelector1).toHaveValue('3');
 
-    const quantitySelector2 = within(productContainers[1]).getByTestId(
-      "select-product-quantity"
-    );
-    await user.selectOptions(quantitySelector2, "2");
-    expect(quantitySelector2).toHaveValue("2");
+    const quantitySelector2 = within(productContainers[1]).getByTestId('select-product-quantity');
+    await user.selectOptions(quantitySelector2 , '2');
+    expect(quantitySelector2).toHaveValue('2')
+
 
     await user.click(addToCartButton1);
 
