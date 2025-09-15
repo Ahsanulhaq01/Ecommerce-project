@@ -1,10 +1,7 @@
-import { useContext } from "react";
 import Header from "../../components/Header";
 import "./not-found-page.css";
-import { CartsContext } from "../checkout/CartContext";
 
 function NotFoundPage() {
-  const { cart } = useContext(CartsContext);
   return (
     <>
       <Header />

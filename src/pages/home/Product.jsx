@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState ,useContext} from "react";
+import { CartsContext } from "../checkout/CartContext";
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
-function Product({ product, loadCart }) {
+function Product({ product }) {
+  const {loadCart} = useContext(CartsContext);
   const [quantity, setQuantity] = useState(1);
   const [showAddedMsg, setShowAddedMsg] = useState(false);
   async function addToCart() {

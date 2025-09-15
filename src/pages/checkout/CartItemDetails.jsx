@@ -1,8 +1,11 @@
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
+import { useState ,useContext} from "react";
 import "./cart-item-details.css";
-import { useState } from "react";
-function CartItemDetails({ cartItem, loadCart }) {
+import { CartsContext } from "./CartContext";
+function CartItemDetails({ cartItem}) {
+
+  const {loadCart}  = useContext(CartsContext)
   const [isUpdated, setIsUpdated] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);
   async function deleteCartItem() {

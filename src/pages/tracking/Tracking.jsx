@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useParams } from "react-router";
 import Header from "../../components/Header";
 import "./tracking.css";
-import { CartsContext } from "../checkout/CartContext";
+
 function Tracking() {
   const [order, setOrder] = useState(null);
-  const { cart } = useContext(CartsContext);
   const params = useParams();
   const { orderId, productId } = params;
   useEffect(() => {

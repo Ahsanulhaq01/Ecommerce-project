@@ -1,13 +1,17 @@
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { unstable_createContext, useNavigate } from "react-router";
 import { formatMoney } from "../../utils/money";
-export function PaymentSummary({ paymentSummary, loadCart }) {
+import { CartsContext } from "./CartContext";
+export function PaymentSummary({ paymentSummary}) {
   const navigate = useNavigate();
+  const {loadCart} = useContext(CartsContext)
   async function createOrder() {
     await axios.post("/api/orders");
     await loadCart();
     navigate("/orders");
   }
+
   return (
     <>
       <div className="payment-summary">

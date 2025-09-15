@@ -68,12 +68,11 @@ function Checkout() {
                       />
                       <CartItemDetails
                         cartItem={cartItem}
-                        loadCart={loadCart}
                       />
                       <DeliveryOption
                         deliveryOptions={deliveryOptions}
                         cartItem={cartItem}
-                        loadCart={loadCart}
+                       
                       />
                     </div>
                   </div>
@@ -81,7 +80,7 @@ function Checkout() {
               })}
           </div>
 
-          <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart} />
+          <PaymentSummary paymentSummary={paymentSummary}/>
         </div>
       </div>
     </>
