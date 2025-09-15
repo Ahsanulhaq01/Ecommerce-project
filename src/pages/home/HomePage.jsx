@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import Header from "../../components/Header";
-import { productContext } from "./HomeContext";
 import { CartsContext } from "../checkout/CartContext";
-import "./homepage.css";
 import ProductGrid from "./ProductGrid";
+import "./homepage.css";
 function HomePage() {
-  const { products } = useContext(productContext);
-  const { cart, loadCart } = useContext(CartsContext);
+  const {loadCart} = useContext(CartsContext);
 
   return (
     <>
