@@ -1,14 +1,21 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
-import { useContext, useState } from "react";
-import { CartsContext } from "../pages/checkout/CartContext";
+import { loadCart } from "../redux/Slice/cartSlice";
+import { useDispatch ,useSelector } from "react-redux";
+import { useEffect ,useState} from "react";
 function Header() {
-  const { cart } = useContext(CartsContext);
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(loadCart());
+  } ,[])
+
+  const {carts} = useSelector(state => state.cart)
 
   let cartQuantity = 0;
-  cart.forEach((cartItems) => {
+  carts.forEach((cartItems) => {
     cartQuantity += cartItems.quantity;
   });
 
