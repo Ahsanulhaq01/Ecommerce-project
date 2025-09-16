@@ -10,20 +10,21 @@ export const cartSlice = createSlice({
     name : 'cart',
     initialState : {
         isloading : false ,
-        cart : [],
-        error : false,
+        carts : [],
+        error : null,
     },
     extraReducers : (builder)=>{
         builder.addCase(loadCart.pending , (state)=>{
             state.isloading = true;
-            state.error  = false;
+            state.error  = null;
         })
         builder.addCase(loadCart.fulfilled , (state , action)=>{
             state.isloading = false;
-            state.cart = action.payload;
+            state.carts = action.payload;
         })
         builder.addCase(loadCart.rejected , (state , action)=>{
-            state.error = action.error.message;
+            state.error =error.action.message;
+
         })
 
 

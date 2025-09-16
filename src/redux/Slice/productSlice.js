@@ -14,7 +14,7 @@ export const productSlice = createSlice({
         error : false,
     },
     extraReducers : (builder)=>{
-        builder.addCase(getProductData.pending , (state , action)=>{
+        builder.addCase(getProductData.pending , (state)=>{
             state.isloading = true ;
             state.error = false;
         })
