@@ -1,17 +1,16 @@
-import { useState ,useContext} from "react";
-import { CartsContext } from "../checkout/CartContext";
-import axios from "axios";
+import { useState } from "react";
 import { formatMoney } from "../../utils/money";
+import { useDispatch } from "react-redux";
+import { loadCart , addProductToCart} from "../../redux/Slice/cartSlice";
 function Product({ product }) {
-  const {loadCart} = useContext(CartsContext);
   const [quantity, setQuantity] = useState(1);
   const [showAddedMsg, setShowAddedMsg] = useState(false);
+  const dispatch = useDispatch();
+  
   async function addToCart() {
-    await axios.post("/api/cart-items", {
-      productId: product.id,
-      quantity,
-    });
-    await loadCart();
+    const id = product.id;
+    dispatch(addProductToCart({id , quantity}));
+    dispatch(loadCart());
     setShowAddedMsg(true);
     setTimeout(() => {
       setShowAddedMsg(false);

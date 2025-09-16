@@ -17,6 +17,13 @@ export const updateCart = createAsyncThunk('updateCart' , async ({id , quantity}
     })
     return {id};
 })
+export const addProductToCart = createAsyncThunk('addtocart' , async({id , quantity})=>{
+    const response = await axios.post(`/api/cart-items` , {
+        productId:id,
+        quantity,
+    })
+    return response.data;
+})
 
 export const cartSlice = createSlice({
     name : 'cart',
@@ -45,6 +52,15 @@ export const cartSlice = createSlice({
             const index = state.carts.findIndex((item) =>item.id === action.payload.id)
             if(index!== -1){
                 state.carts[index] = action.payload
+            }
+        })
+        builder.addCase(addProductToCart.fulfilled , (state , action)=>{
+            const existingItem = state.carts.find(item => item.id === action.payload.id);
+            if(existingItem){
+                existingItem.quantity = action.payload.quantity;
+            }
+            else {
+                state.carts.push(action.payload)
             }
         })
 
