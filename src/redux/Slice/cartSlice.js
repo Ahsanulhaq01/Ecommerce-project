@@ -11,6 +11,12 @@ export const deleteCart = createAsyncThunk('deleteCart' , async(id)=>{
     return response.data
 })
 
+export const updateCart = createAsyncThunk('updateCart' , async (id,{ quantity}) => {
+    const response = await axios.put(`/api/cart-items/${id}` , {
+        quantity : Number(quantity)
+    })
+})
+
 export const cartSlice = createSlice({
     name : 'cart',
     initialState : {
@@ -27,12 +33,18 @@ export const cartSlice = createSlice({
             state.isloading = false;
             state.carts = action.payload;
         })
-        builder.addCase(loadCart.rejected , (state , action)=>{
+        builder.addCase(loadCart.rejected , (state)=>{
             state.error =error.action.message;
 
         })
         builder.addCase(deleteCart.fulfilled , (state, action)=>{
             state.carts = state.carts.filter(item => item.id !== action.payload.id)
+        })
+        builder.addCase(updateCart.fulfilled , (state , action)=>{
+            const index = state.carts.findIndex((item) =>item.id === action.payload.id)
+            if(index!== -1){
+                state.carts[index] = action.payload
+            }
         })
 
 

@@ -1,10 +1,8 @@
-import axios from "axios";
 import { formatMoney } from "../../utils/money";
 import "./cart-item-details.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loadCart,deleteCart } from "../../redux/Slice/cartSlice";
-
+import { loadCart,deleteCart , updateCart } from "../../redux/Slice/cartSlice";
 function CartItemDetails({ cartItem}) {
   const [isUpdated, setIsUpdated] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);
@@ -15,12 +13,10 @@ function CartItemDetails({ cartItem}) {
   }
 
   async function updatedCartItem() {
-    await axios.put(`/api/cart-items/${cartItem.productId}`, {
-      quantity: Number(quantity),
-    });
+    
+    dispatch(updateCart(cartItem.productId ,{quantity}))
    dispatch(loadCart())
     setIsUpdated(false);
-    console.log("hello pakistan");
   }
   function toggleIsUpdated() {
     setIsUpdated(true);
