@@ -1,23 +1,25 @@
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
-import { useState ,useContext} from "react";
 import "./cart-item-details.css";
-import { CartsContext } from "./CartContext";
-function CartItemDetails({ cartItem}) {
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loadCart} from "../../redux/Slice/cartSlice";
+import { deleteCart } from "../../redux/Slice/cartDeleteSlice";
 
-  const {loadCart}  = useContext(CartsContext)
+function CartItemDetails({ cartItem}) {
   const [isUpdated, setIsUpdated] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);
+  const dispatch = useDispatch();
   async function deleteCartItem() {
-    await axios.delete(`/api/cart-items/${cartItem.productId}`);
-    await loadCart();
+    dispatch(deleteCart(cartItem.productId))
+    dispatch(loadCart())
   }
 
   async function updatedCartItem() {
     await axios.put(`/api/cart-items/${cartItem.productId}`, {
       quantity: Number(quantity),
     });
-    await loadCart();
+   dispatch(loadCart())
     setIsUpdated(false);
     console.log("hello pakistan");
   }

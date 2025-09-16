@@ -1,17 +1,24 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { PaymentSummary } from "./PaymentSummary";
 import CartItemDetails from "./CartItemDetails";
 import CheckoutHeader from "./CheckoutHeader";
 import DeliveryOption from "./DeliveryOption";
+import { useDispatch , useSelector } from "react-redux";
 import "./checkout.css";
-import { CartsContext } from "./CartContext";
+import {loadCart } from "../../redux/Slice/cartSlice";
 
 function Checkout() {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
-  const { cart, loadCart } = useContext(CartsContext);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(loadCart())
+  },[dispatch])
+
+  const {carts} = useSelector(state=>state.cart)
 
   // const loadPaymentSummary = async () => {
   //     const response = await axios.get("/api/payment-summary");
@@ -23,7 +30,7 @@ function Checkout() {
       setPaymentSummary(response.data);
     };
     loadPaymentSummary();
-  }, [cart]);
+  }, [carts]);
   useEffect(() => {
     const getdeliveryoptiondata = async () => {
       const response = await axios.get(
@@ -46,7 +53,7 @@ function Checkout() {
         <div className="checkout-grid">
           <div className="order-summary">
             {deliveryOptions.length > 0 &&
-              cart.map((cartItem) => {
+              carts.map((cartItem) => {
                 const selectedDeliveryOption = deliveryOptions.find(
                   (deliveryOption) => {
                     return deliveryOption.id === cartItem.deliveryOptionId;
@@ -68,11 +75,11 @@ function Checkout() {
                       />
                       <CartItemDetails
                         cartItem={cartItem}
+                      
                       />
                       <DeliveryOption
                         deliveryOptions={deliveryOptions}
                         cartItem={cartItem}
-                       
                       />
                     </div>
                   </div>
@@ -80,7 +87,7 @@ function Checkout() {
               })}
           </div>
 
-          <PaymentSummary paymentSummary={paymentSummary}/>
+          <PaymentSummary paymentSummary={paymentSummary}  />
         </div>
       </div>
     </>
