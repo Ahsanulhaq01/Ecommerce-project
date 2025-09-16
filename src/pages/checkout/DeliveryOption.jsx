@@ -1,11 +1,12 @@
-import { useContext } from "react";
 import dayjs from "dayjs";
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
-import { CartsContext } from "./CartContext";
+import { loadCart } from "../../redux/Slice/cartSlice";
+import { useDispatch } from "react-redux";
 
 function DeliveryOption({ deliveryOptions, cartItem}) {
-  const {loadCart} = useContext(CartsContext)
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="delivery-options">
@@ -19,7 +20,7 @@ function DeliveryOption({ deliveryOptions, cartItem}) {
             await axios.put(`/api/cart-items/${cartItem.productId}`, {
               deliveryOptionId: deliveryOption.id,
             });
-            await loadCart();
+            dispatch(loadCart())
           }
           return (
             <div
