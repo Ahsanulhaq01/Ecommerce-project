@@ -13,8 +13,8 @@ function CartItemDetails({ cartItem}) {
   }
 
   async function updatedCartItem() {
-    
-    dispatch(updateCart(cartItem.productId ,{quantity}))
+    const id = cartItem.productId;
+    dispatch(updateCart({id ,quantity}))
    dispatch(loadCart())
     setIsUpdated(false);
   }

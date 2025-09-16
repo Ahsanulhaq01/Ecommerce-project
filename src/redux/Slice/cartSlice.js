@@ -11,10 +11,11 @@ export const deleteCart = createAsyncThunk('deleteCart' , async(id)=>{
     return response.data
 })
 
-export const updateCart = createAsyncThunk('updateCart' , async (id,{ quantity}) => {
+export const updateCart = createAsyncThunk('updateCart' , async ({id , quantity}) => {
     const response = await axios.put(`/api/cart-items/${id}` , {
         quantity : Number(quantity)
     })
+    return {id};
 })
 
 export const cartSlice = createSlice({
