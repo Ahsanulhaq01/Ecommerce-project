@@ -3,8 +3,7 @@ import { formatMoney } from "../../utils/money";
 import "./cart-item-details.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loadCart} from "../../redux/Slice/cartSlice";
-import { deleteCart } from "../../redux/Slice/cartDeleteSlice";
+import { loadCart,deleteCart } from "../../redux/Slice/cartSlice";
 
 function CartItemDetails({ cartItem}) {
   const [isUpdated, setIsUpdated] = useState(false);

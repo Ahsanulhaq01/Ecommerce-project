@@ -6,6 +6,11 @@ export const loadCart = createAsyncThunk('cart/loadCart' , async()=>{
     return response.data;
 })
 
+export const deleteCart = createAsyncThunk('deleteCart' , async(id)=>{
+    const response = await axios.delete(`/api/cart-items/${id}`)
+    return response.data
+})
+
 export const cartSlice = createSlice({
     name : 'cart',
     initialState : {
@@ -25,6 +30,9 @@ export const cartSlice = createSlice({
         builder.addCase(loadCart.rejected , (state , action)=>{
             state.error =error.action.message;
 
+        })
+        builder.addCase(deleteCart.fulfilled , (state, action)=>{
+            state.carts = state.carts.filter(item => item.id !== action.payload.id)
         })
 
 
