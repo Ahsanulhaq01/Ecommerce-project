@@ -1,16 +1,15 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import OrdersGrid from "./OrdersGrid";
 import Header from "../../components/Header";
 import "./orders.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders } from "../../redux/Slice/orderSlice";
 function Order() {
-  const [orders, setOrders] = useState([]);
+  const dispatch = useDispatch();
+  const {orders} = useSelector(state => state.orders);
   useEffect(() => {
-    const getorderdata = async () => {
-      const response = await axios.get("/api/orders?expand=products");
-      setOrders(response.data);
-    };
-    getorderdata();
+    
+    dispatch(getOrders())
   }, []);
   return (
     <>
