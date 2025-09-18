@@ -41,8 +41,8 @@ export const cartSlice = createSlice({
             state.isloading = false;
             state.carts = action.payload;
         })
-        builder.addCase(loadCart.rejected , (state)=>{
-            state.error =error.action.message;
+        builder.addCase(loadCart.rejected , (state ,action)=>{
+            state.error =action.error.message
 
         })
         builder.addCase(deleteCart.fulfilled , (state, action)=>{
