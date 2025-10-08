@@ -2,13 +2,16 @@ import axios from "axios";
 import { useContext } from "react";
 import {useNavigate } from "react-router";
 import { formatMoney } from "../../utils/money";
-import { CartsContext } from "./CartContext";
+import {loadCart} from '../../redux/Slice/cartSlice'
+import { useDispatch } from "react-redux";
+// import { CartsContext } from "./CartContext";
 export function PaymentSummary({ paymentSummary}) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {loadCart} = useContext(CartsContext)
+  // const {loadCart} = useContext(CartsContext)
   async function createOrder() {
     await axios.post("/api/orders");
-    await loadCart();
+    dispatch(loadCart())
     navigate("/orders");
   }
 
