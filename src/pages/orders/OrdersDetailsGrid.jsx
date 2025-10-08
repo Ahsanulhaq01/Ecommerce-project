@@ -1,7 +1,14 @@
 import { Fragment } from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { loadCart , addProductToCart} from "../../redux/Slice/cartSlice";
 function OrdersDetailsGrid({ order }) {
+const dispatch  = useDispatch();
+async function addToCartInOrderPage(id , quantity){
+        dispatch(addProductToCart({id , quantity}));
+        dispatch(loadCart());        
+  }
   return (
     <>
       <div className="order-details-grid">
@@ -26,7 +33,9 @@ function OrdersDetailsGrid({ order }) {
                     className="buy-again-icon"
                     src="./src/assets/images/icons/buy-again.png"
                   />
-                  <span className="buy-again-message">Add to Cart</span>
+                  <span className="buy-again-message" onClick={()=>{
+                    addToCartInOrderPage(orderProduct.product.id , orderProduct.quantity)
+                  }} >Add to Cart</span>
                 </button>
               </div>
 
