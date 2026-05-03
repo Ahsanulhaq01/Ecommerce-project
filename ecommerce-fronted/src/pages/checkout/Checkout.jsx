@@ -7,7 +7,8 @@ import DeliveryOption from "./DeliveryOption";
 import { useDispatch , useSelector } from "react-redux";
 import "./checkout.css";
 import {loadCart } from "../../redux/Slice/cartSlice";
-import axiosInstance from "../../api/axoisInstance";
+import axiosInstance from "../../utils/axoisInstance";
+import cartFavicon from '../../../public/images/cart-favicon.png'
 
 function Checkout() {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
@@ -43,7 +44,7 @@ function Checkout() {
 
   return (
     <>
-      <link rel="icon" type="image/svg+xml" href="../images/cart-favicon.png" />
+      <link rel="icon" type="image/svg+xml" href={cartFavicon} />
       <title>Checkout</title>
       <CheckoutHeader />
 

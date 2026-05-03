@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router";
 import { useDispatch } from "react-redux";
 import { loadCart , addProductToCart} from "../../redux/Slice/cartSlice";
+import buyAgain from '../../assets/images/icons/buy-again.png'
 function OrdersDetailsGrid({ order }) {
 const dispatch  = useDispatch();
 async function addToCartInOrderPage(id , quantity){
@@ -31,7 +32,7 @@ async function addToCartInOrderPage(id , quantity){
                 <button className="buy-again-button button-primary">
                   <img
                     className="buy-again-icon"
-                    src="./src/assets/images/icons/buy-again.png"
+                    src={buyAgain}
                   />
                   <span className="buy-again-message" onClick={()=>{
                     addToCartInOrderPage(orderProduct.product.id , orderProduct.quantity)

@@ -2,6 +2,9 @@ import { Link } from "react-router";
 import "./checkoutHeader.css";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import logoPng from '../../assets/images/icons/logo.png'
+import mobileLogoPng from '../../assets/images/icons/mobile-logo.png'
+import checkoutLockIcon from '../../assets/images/icons/checkout-lock-icon.png'
 function CheckoutHeader() {
   const {carts} = useSelector(state => state.cart)
   useEffect(()=>{
@@ -12,10 +15,10 @@ function CheckoutHeader() {
         <div className="header-content">
           <div className="checkout-header-left-section">
             <Link to="/">
-              <img className="logo" src="./src/assets/images/icons/logo.png" />
+              <img className="logo" src={logoPng} />
               <img
                 className="mobile-logo"
-                src="./src/assets/images/icons/mobile-logo.png"
+                src={mobileLogoPng}
               />
             </Link>
           </div>
@@ -29,7 +32,7 @@ function CheckoutHeader() {
           </div>
 
           <div className="checkout-header-right-section">
-            <img src="./src/assets/images/icons/checkout-lock-icon.png" />
+            <img src={checkoutLockIcon} />
           </div>
         </div>
       </div>

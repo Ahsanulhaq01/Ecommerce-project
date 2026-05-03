@@ -3,7 +3,7 @@ import {useNavigate } from "react-router";
 import { formatMoney } from "../../utils/money";
 import {loadCart} from '../../redux/Slice/cartSlice'
 import { useDispatch } from "react-redux";
-import axiosInstance from "../../api/axoisInstance";
+import axiosInstance from "../../utils/axoisInstance";
 // import { CartsContext } from "./CartContext";
 export function PaymentSummary({ paymentSummary}) {
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { formatMoney } from "../../utils/money";
 import { loadCart } from "../../redux/Slice/cartSlice";
 import { useDispatch } from "react-redux";
-import axiosInstance from "../../api/axoisInstance";
+import axiosInstance from "../../utils/axoisInstance";
 
 function DeliveryOption({ deliveryOptions, cartItem}) {
   const dispatch = useDispatch();

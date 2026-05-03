@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import "./orders.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../redux/Slice/orderSlice";
+import orderFavicon from '../../../public/images/orders-favicon.png'
 function Order() {
   const dispatch = useDispatch();
   const {orders} = useSelector(state => state.orders);
@@ -16,7 +17,7 @@ function Order() {
       <link
         rel="icon"
         type="image/svg+xml"
-        href="./images/orders-favicon.png"
+        href={orderFavicon}
       />
       <title>Orders</title>
 

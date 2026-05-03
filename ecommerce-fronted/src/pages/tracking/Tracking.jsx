@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 import { useParams } from "react-router";
 import Header from "../../components/Header";
 import "./tracking.css";
-import axiosInstance from "../../api/axoisInstance";
+import axiosInstance from "../../utils/axoisInstance";
+import trackingFavicon from '../../../public/images/tracking-favicon.png'
 
 function Tracking() {
   const [order, setOrder] = useState(null);
@@ -46,7 +47,7 @@ function Tracking() {
       <link
         rel="icon"
         type="image/svg+xml"
-        href="./images/tracking-favicon.png"
+        href={trackingFavicon}
       />
       <title>Tracking</title>
       <Header />
