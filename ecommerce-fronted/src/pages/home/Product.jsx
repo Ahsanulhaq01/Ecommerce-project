@@ -2,6 +2,7 @@ import { useState } from "react";
 import { formatMoney } from "../../utils/money";
 import { useDispatch } from "react-redux";
 import { loadCart , addProductToCart} from "../../redux/Slice/cartSlice";
+import checkMarkIcon from '../../assets/images/icons/checkmark.png'
 function Product({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [showAddedMsg, setShowAddedMsg] = useState(false);
@@ -71,7 +72,7 @@ function Product({ product }) {
           className="added-to-cart"
           style={{ opacity: showAddedMsg ? 1 : 0 }}
         >
-          <img src="images/icons/checkmark.png" />
+          <img src={checkMarkIcon} />
           Added
         </div>
 

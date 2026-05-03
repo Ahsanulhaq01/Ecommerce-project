@@ -3,6 +3,10 @@ import "./Header.css";
 import { loadCart } from "../redux/Slice/cartSlice";
 import { useDispatch ,useSelector } from "react-redux";
 import { useEffect ,useState} from "react";
+import cartIcon from '../assets/images/icons/cart-icon.png'
+import logoWhite from '../assets/images/icons/logo-white.png'
+import searchIcon from '../assets/images/icons/search-icon.png'
+import mobileLogoWhite from '../assets/images/icons/mobile-logo-white.png'
 function Header() {
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
@@ -32,9 +36,9 @@ function Header() {
           <NavLink to="/" className="header-link">
             <img
               className="logo"
-              src="../../src/assets/images/icons/logo-white.png"
+              src={logoWhite}
             />
-            <img className="mobile-logo" src="images/mobile-logo-white.png" />
+            <img className="mobile-logo" src={mobileLogoWhite} />
           </NavLink>
         </div>
 
@@ -50,7 +54,7 @@ function Header() {
           <button className="search-button" onClick={handleSearchButton}>
             <img
               className="search-icon"
-              src="../../src/assets/images/icons/search-icon.png"
+              src={searchIcon}
             />
           </button>
         </div>
@@ -63,7 +67,7 @@ function Header() {
           <NavLink className="cart-link header-link" to="/checkout">
             <img
               className="cart-icon"
-              src="../../src/assets/images/icons/cart-icon.png"
+              src={cartIcon}
             />
             <div className="cart-quantity">{cartQuantity}</div>
             <div className="cart-text">Cart</div>
