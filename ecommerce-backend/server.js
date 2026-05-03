@@ -26,7 +26,7 @@ const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors({
-  origin : "https://ecommerce-fronted-pi.vercel.app/",
+  origin : "https://ecommerce-fronted-pi.vercel.app",
 }));
 app.use(express.json());
 
