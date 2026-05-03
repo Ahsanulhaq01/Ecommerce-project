@@ -7,15 +7,15 @@ import {
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import HomePage from "./HomePage";
-import axios from "axios";
+import axiosInstance from "../../api/axoisInstance";
 
-vi.mock("axios");
+vi.mock("axiosInstance");
 describe("Homepage Component", () => {
   let loadCart;
   beforeEach(() => {
     loadCart = vi.fn();
 
-    axios.get.mockImplementation(async (urlPath) => {
+    axiosInstance.get.mockImplementation(async (urlPath) => {
       if (urlPath === "/api/products/") {
         return {
           data: [
@@ -94,12 +94,12 @@ describe("Homepage Component", () => {
     );
     await user.click(addToCartButton2);
 
-    expect(axios.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
+    expect(axiosInstance.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       quantity: 3,
     });
 
-    expect(axios.post).toHaveBeenNthCalledWith(2, "/api/cart-items", {
+    expect(axiosInstance.post).toHaveBeenNthCalledWith(2, "/api/cart-items", {
       productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
       quantity: 2,
     });

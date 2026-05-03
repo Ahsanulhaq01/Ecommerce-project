@@ -1,8 +1,8 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../api/axoisInstance";
 
 export const getOrders = createAsyncThunk('getorders' , async()=>{
-    const response = await axios.get('/api/orders?expand=products');
+    const response = await axiosInstance.get('/api/orders?expand=products');
     return response.data;
 })
 

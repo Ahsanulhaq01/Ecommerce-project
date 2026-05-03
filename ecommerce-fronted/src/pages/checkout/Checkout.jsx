@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { PaymentSummary } from "./PaymentSummary";
@@ -8,6 +7,7 @@ import DeliveryOption from "./DeliveryOption";
 import { useDispatch , useSelector } from "react-redux";
 import "./checkout.css";
 import {loadCart } from "../../redux/Slice/cartSlice";
+import axiosInstance from "../../api/axoisInstance";
 
 function Checkout() {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
@@ -26,14 +26,14 @@ function Checkout() {
   //   };
   useEffect(() => {
     const loadPaymentSummary = async () => {
-      const response = await axios.get("/api/payment-summary");
+      const response = await axiosInstance.get("/api/payment-summary");
       setPaymentSummary(response.data);
     };
     loadPaymentSummary();
   }, [carts]);
   useEffect(() => {
     const getdeliveryoptiondata = async () => {
-      const response = await axios.get(
+      const response = await axiosInstance.get(
         "/api/delivery-options?expand=estimatedDeliveryTime"
       );
       setDeliveryOptions(response.data);

@@ -1,8 +1,9 @@
 import dayjs from "dayjs";
-import axios from "axios";
+
 import { formatMoney } from "../../utils/money";
 import { loadCart } from "../../redux/Slice/cartSlice";
 import { useDispatch } from "react-redux";
+import axiosInstance from "../../api/axoisInstance";
 
 function DeliveryOption({ deliveryOptions, cartItem}) {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function DeliveryOption({ deliveryOptions, cartItem}) {
             priceString = `${formatMoney(deliveryOption.priceCents)}-Shipping`;
           }
           async function updateDeliveryOptions() {
-            await axios.put(`/api/cart-items/${cartItem.productId}`, {
+            await axiosInstance.put(`/api/cart-items/${cartItem.productId}`, {
               deliveryOptionId: deliveryOption.id,
             });
             dispatch(loadCart())

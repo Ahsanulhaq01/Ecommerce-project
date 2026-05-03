@@ -3,9 +3,9 @@ import { it, describe, expect, vi, beforeEach } from "vitest";
 import { PaymentSummary } from "./PaymentSummary";
 import { screen, within, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import axios from "axios";
+import axiosInstance from "../../api/axoisInstance";
 
-vi.mock("axios");
+vi.mock("axiosInstance");
 describe("PaymmentSummary Component", () => {
   let loadCart;
   let paymentsummary;
@@ -61,7 +61,7 @@ describe("PaymmentSummary Component", () => {
     );
     const placeOrderButton = screen.getByTestId("test-place-order-button");
     await user.click(placeOrderButton);
-    expect(axios.post).toHaveBeenCalledWith("/api/orders");
+    expect(axiosInstance.post).toHaveBeenCalledWith("/api/orders");
     expect(loadCart).toHaveBeenCalled();
     expect(screen.getByTestId("url-path")).toHaveTextContent("/orders");
   });

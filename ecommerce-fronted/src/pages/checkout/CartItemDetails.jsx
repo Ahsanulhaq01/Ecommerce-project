@@ -55,7 +55,7 @@ function CartItemDetails({ cartItem}) {
                 onKeyDown={handlekeyDown}
               />
             ) : (
-              <span className="quantity-label">{cartItem.quantity}</span>
+              <span className="quantity-label">{`${cartItem.quantity}`}</span>
             )}
           </span>
           <span

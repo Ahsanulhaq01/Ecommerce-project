@@ -1,6 +1,11 @@
 import { Link } from "react-router";
 import "./checkoutHeader.css";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 function CheckoutHeader() {
+  const {carts} = useSelector(state => state.cart)
+  useEffect(()=>{
+    } , [carts])
   return (
     <>
       <div className="checkout-header">
@@ -18,7 +23,7 @@ function CheckoutHeader() {
           <div className="checkout-header-middle-section">
             Checkout (
             <Link className="return-to-home-link" to="/">
-              3 items
+              {`${carts?.length} items`}
             </Link>
             )
           </div>

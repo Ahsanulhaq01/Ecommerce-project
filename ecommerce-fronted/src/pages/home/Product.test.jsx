@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import userEvent from "@testing-library/user-event";
 import Product from "./Product";
-import axios from "axios";
+import axiosInstance from "../../api/axoisInstance";
 
-vi.mock("axios");
+vi.mock("axiosInstance");
 describe("Product Component", () => {
   let product;
   let loadCart;
@@ -52,7 +52,7 @@ describe("Product Component", () => {
 
     await user.click(addToCartButton);
 
-    expect(axios.post).toHaveBeenCalledWith("/api/cart-items", {
+    expect(axiosInstance.post).toHaveBeenCalledWith("/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       quantity: 1,
     });
@@ -69,7 +69,7 @@ describe("Product Component", () => {
     await user.click(addToCartButton);
 
     expect(quantitySelector).toHaveValue("3");
-    expect(axios.post).toHaveBeenCalledWith("/api/cart-items", {
+    expect(axiosInstance.post).toHaveBeenCalledWith("/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       quantity: 3,
     });
